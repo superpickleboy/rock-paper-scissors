@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let humanscore = 0;
+        let computerscore = 0;
+        const max = 3;
+
+        
+
+        //computer choice
+        function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+        }
+
+
+        function getcomputerchoice(cpu) {
+            if (cpu === 0) return "rock";
+            else if (cpu === 1) return "paper";
+            else return "scissors";
+        }
+
+        //end cpu choice
+
+
+
+            //round game
+            function playround(human, computer) {
+                if (human === computer) 
+                return `It is a draw, both picked ${human}`;
+
+                else if (
+                    (human === "rock" && computer === "paper") || 
+                    (human === "paper" && computer === "scissors") ||
+                    (human === "scissors" && computer === "rock")
+                ){
+                    computerscore++;
+                    return `You lose, ${computer} beats ${human}`;}
+
+                else {
+                    humanscore++;
+                    return `You Win, ${human} beats ${computer}`}
+            }
+
+            //end round
+
+        //match loop
+        function playgame(rounds) {
+        for (let i = 0; i < rounds; i++) {
+            const cpu = getRandomInt(max);
+            const computer = getcomputerchoice(cpu);
+            console.log(computer);
+
+            //human choice
+            const humanprompt = prompt("Rock, Paper or Scissors?");
+            const human = humanprompt.toLowerCase();
+            console.log(human);
+            //end human choice
+
+            const winner = playround(human, computer);
+            console.log(winner);
+            console.log(humanscore);
+            console.log(computerscore);}
+
+        }
+
+        playgame(5);
+
+        //match results
+        function match(humanscore, computerscore) {
+
+            if (humanscore === computerscore)
+                return "Match drawn";
+
+            else if (humanscore > computerscore)
+                return "Congratulations, you won the match!";
+
+            else
+                return "Bad luck, you lost the match";
+        }
+        //end match results
+
+    console.log(match(humanscore, computerscore));
+
+          
+
+    </script>
+    
+</body>
+</html>
